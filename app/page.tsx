@@ -1,29 +1,22 @@
+import Link from "next/link";
+import { products } from "@/data/products";
+
 export default function Home() {
   return (
-    <main style={{ padding: 40, maxWidth: 900, margin: "0 auto" }}>
+    <main style={{ padding: 40 }}>
       <h1>Food Power Index</h1>
       <p>Follow the money behind your food</p>
 <p>
-  <a href="/methodology">Read methodology</a>
+  <a href="/methodology">Methodology</a>
 </p>
-      <div style={{ display: "grid", gap: 16, marginTop: 24 }}>
-        <div style={{ border: "1px solid #ddd", padding: 16, borderRadius: 12 }}>
-          <h2>Chocolate</h2>
-          <p>EU market</p>
-          <p>Score: 82</p>
-        </div>
-
-        <div style={{ border: "1px solid #ddd", padding: 16, borderRadius: 12 }}>
-          <h2>Coffee</h2>
-          <p>EU market</p>
-          <p>Score: 74</p>
-        </div>
-
-        <div style={{ border: "1px solid #ddd", padding: 16, borderRadius: 12 }}>
-          <h2>Bananas</h2>
-          <p>EU market</p>
-          <p>Score: 69</p>
-        </div>
+      <div style={{ marginTop: 20 }}>
+        {products.map((p) => (
+          <div key={p.slug} style={{ marginBottom: 16 }}>
+            <Link href={`/products/${p.slug}`}>
+              {p.name} — Score: {p.score}
+            </Link>
+          </div>
+        ))}
       </div>
     </main>
   );
